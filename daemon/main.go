@@ -138,6 +138,11 @@ func init() {
 						Name:        "keep-config",
 						Usage:       "When restoring state, keeps containers' configuration in place",
 					},
+					cli.BoolFlag{
+						Destination: &config.KVStoreIPv4Registration,
+						Name:        "kvstore-ipv4-registration",
+						Usage:       "Registers the node address in KVStore so it can receive an IPv4 range automatically",
+					},
 					cli.StringFlag{
 						Destination: &labelPrefixFile,
 						Name:        "p",
@@ -347,7 +352,18 @@ func configDaemon(ctx *cli.Context) {
 	}
 }
 
+func validateFlags(ctx *cli.Context) error {
+	if config.KVStoreIPv4Registration && v4Prefix != "" {
+		return fmt.Errorf("invalid settings: Either use kvstore-ipv4-registration or ipv4-range option but not both")
+	}
+	return nil
+}
+
 func initEnv(ctx *cli.Context) error {
+	if err := validateFlags(ctx); err != nil {
+		return err
+	}
+
 	config.OptsMU.Lock()
 	if ctx.GlobalBool("debug") {
 		common.SetupLOG(log, "DEBUG")
