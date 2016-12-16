@@ -44,7 +44,7 @@ cd /tmp/cilium-net-build/src/github.com/cilium/cilium && \
 export GOROOT=/usr/local/go && \
 export GOPATH=/tmp/cilium-net-build && \
 export PATH="$GOROOT/bin:/usr/local/clang+llvm/bin:$PATH" && \
-make && \
+make CONTAINER=1 && \
 make PKG_BUILD=1 install && \
 # cilium-end
 #

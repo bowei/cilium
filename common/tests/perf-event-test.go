@@ -25,6 +25,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/cilium/cilium/common"
 	"github.com/cilium/cilium/pkg/bpf"
 
 	"github.com/codegangsta/cli"
@@ -32,7 +33,7 @@ import (
 
 var (
 	config = bpf.PerfEventConfig{
-		MapPath:      "/sys/fs/bpf/tc/globals/perf_test_events",
+		MapPath:      common.BPFMapPerfEvents,
 		Type:         C.PERF_TYPE_SOFTWARE,
 		Config:       C.PERF_COUNT_SW_BPF_OUTPUT,
 		SampleType:   C.PERF_SAMPLE_RAW,

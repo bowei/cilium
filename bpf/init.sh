@@ -14,16 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LIB=$1
-RUNDIR=$2
-ADDR=$3
-V4ADDR=$4
-MODE=$5
+MOUNTPOINT=$1
+LIB=$2
+RUNDIR=$3
+ADDR=$4
+V4ADDR=$5
+MODE=$6
 
 # Only set if MODE = "direct" or "lb"
-NATIVE_DEV=$6
+NATIVE_DEV=$7
 
-MOUNTPOINT="/sys/fs/bpf"
 
 HOST_ID="host"
 WORLD_ID="world"

@@ -132,6 +132,8 @@ import (
 	"runtime"
 	"syscall"
 	"unsafe"
+
+	"github.com/cilium/cilium/common"
 )
 
 const (
@@ -150,7 +152,7 @@ type PerfEventConfig struct {
 
 func DefaultPerfEventConfig() *PerfEventConfig {
 	return &PerfEventConfig{
-		MapPath:      "/sys/fs/bpf/tc/globals/cilium_events",
+		MapPath:      common.BPFMapCiliumEvents,
 		Type:         C.PERF_TYPE_SOFTWARE,
 		Config:       C.PERF_COUNT_SW_BPF_OUTPUT,
 		SampleType:   C.PERF_SAMPLE_RAW,

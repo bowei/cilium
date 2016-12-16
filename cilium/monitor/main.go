@@ -30,10 +30,11 @@ import (
 	"runtime"
 	"syscall"
 
+	"github.com/cilium/cilium/common"
+	"github.com/cilium/cilium/pkg/bpf"
+
 	"github.com/codegangsta/cli"
 	l "github.com/op/go-logging"
-
-	"github.com/cilium/cilium/pkg/bpf"
 )
 
 var (
@@ -41,7 +42,7 @@ var (
 	CliCommand cli.Command
 	dissect    = false
 	config     = bpf.PerfEventConfig{
-		MapPath:      "/sys/fs/bpf/tc/globals/cilium_events",
+		MapPath:      common.BPFMapCiliumEvents,
 		Type:         C.PERF_TYPE_SOFTWARE,
 		Config:       C.PERF_COUNT_SW_BPF_OUTPUT,
 		SampleType:   C.PERF_SAMPLE_RAW,
