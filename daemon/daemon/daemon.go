@@ -79,6 +79,7 @@ type Daemon struct {
 	uiTopo                    types.UITopo
 	uiListeners               map[*Conn]bool
 	registerUIListener        chan *Conn
+	ignoredContainers         map[string]int
 }
 
 func createDockerClient(endpoint string) (*dClient.Client, error) {
@@ -395,6 +396,7 @@ func NewDaemon(c *Config) (*Daemon, error) {
 		uiTopo:                    types.NewUITopo(),
 		uiListeners:               make(map[*Conn]bool),
 		registerUIListener:        make(chan *Conn, 1),
+		ignoredContainers:         make(map[string]int),
 	}
 
 	if c.IsK8sEnabled() {
