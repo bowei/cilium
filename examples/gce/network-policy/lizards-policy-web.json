@@ -1,0 +1,31 @@
+{
+  "apiVersion": "extensions/v1beta1",
+  "kind": "NetworkPolicy",
+  "metadata": {
+    "annotations": {
+      "io.cilium.name": "lizards",
+      "io.cilium.parent": "io.cilium"
+    },
+    "name": "lizards-policy-web"
+  },
+  "spec": {
+    "podSelector": {
+      "matchLabels": {
+        "web": ""
+      }
+    },
+    "ingress": [
+      {
+        "from": [
+          {
+            "podSelector": {
+              "matchLabels": {
+                "io.cilium.reserved": "host"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "apiVersion": "extensions/v1beta1",
+  "kind": "NetworkPolicy",
+  "metadata": {
+    "name": "admin"
+  },
+  "spec": {
+    "podSelector": {
+      "matchLabels": {
+        "kube-system": ""
+      }
+    },
+    "ingress": [
+      {
+        "from": [
+          {
+            "podSelector": {
+              "matchLabels": {
+                "io.cilium.reserved": "host"
+              }
+            }
+          },
+          {
+            "podSelector": {
+              "matchLabels": {
+                "io.kubernetes.pod.namespace": "default"
+              }
+            }
+          },
+          {
+            "namespaceSelector": {
+              "matchLabels": {
+                "kube-system": ""
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
