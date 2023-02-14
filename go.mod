@@ -77,14 +77,14 @@ require (
 	github.com/spf13/cobra v1.2.1
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.8.1
-	github.com/stretchr/testify v1.7.0
+	github.com/stretchr/testify v1.8.0
 	github.com/vishvananda/netlink v1.1.1-0.20210510164352-d17758a128bf
 	github.com/vishvananda/netns v0.0.0-20201230012202-c4f3ca719c73
 	go.etcd.io/etcd/api/v3 v3.5.0
 	go.etcd.io/etcd/client/pkg/v3 v3.5.0
 	go.etcd.io/etcd/client/v3 v3.5.0
 	go.mongodb.org/mongo-driver v1.5.1 // indirect
-	go.uber.org/goleak v1.1.10
+	go.uber.org/goleak v1.2.1
 	go.universe.tf/metallb v0.10.0
 	golang.org/x/crypto v0.0.0-20210503195802-e9a32991a82e
 	golang.org/x/net v0.0.0-20210520170846-37e1c6afe023
@@ -204,7 +204,6 @@ require (
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
 	go.uber.org/zap v1.17.0 // indirect
-	golang.org/x/lint v0.0.0-20210508222113-6edffad5e616 // indirect
 	golang.org/x/mod v0.4.2 // indirect
 	golang.org/x/oauth2 v0.0.0-20210402161424-2e8d93401602 // indirect
 	golang.org/x/term v0.0.0-20210220032956-6a3ed077a48d // indirect
@@ -213,7 +212,7 @@ require (
 	google.golang.org/appengine v1.6.7 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
-	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gotest.tools v2.2.0+incompatible // indirect
 	k8s.io/gengo v0.0.0-20201214224949-b6c5ce23f027 // indirect
 	k8s.io/klog v1.0.0 // indirect
