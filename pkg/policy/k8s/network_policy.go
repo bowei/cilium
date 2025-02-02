@@ -16,6 +16,8 @@ import (
 )
 
 func (p *policyWatcher) addK8sNetworkPolicyV1(k8sNP *slim_networkingv1.NetworkPolicy, apiGroup string, dc chan uint64) error {
+	p.log.Infof("XXX/bowei addK8sNetworkPolicyV1()")
+
 	defer func() {
 		p.k8sResourceSynced.SetEventTimestamp(apiGroup)
 	}()
@@ -51,6 +53,8 @@ func (p *policyWatcher) addK8sNetworkPolicyV1(k8sNP *slim_networkingv1.NetworkPo
 }
 
 func (p *policyWatcher) deleteK8sNetworkPolicyV1(k8sNP *slim_networkingv1.NetworkPolicy, apiGroup string, dc chan uint64) error {
+	p.log.Infof("XXX/bowei deleteK8sNetworkPolicyV1()")
+
 	defer func() {
 		p.k8sResourceSynced.SetEventTimestamp(apiGroup)
 	}()

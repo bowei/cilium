@@ -1,0 +1,57 @@
+16777220   cidr:1.1.1.2/32
+           reserved:world-ipv4
+16777221   cidr:1.1.1.3/32
+           reserved:world-ipv4
+16777222   cidr:1.1.1.1/32
+           reserved:world-ipv4
+16777223   cidr:1.1.0.0/16
+           reserved:world-ipv4
+16777224   cidr:1.1.1.10/32
+           reserved:world-ipv4
+16777225   cidr:1.1.1.10/31
+           reserved:world-ipv4
+16777226   cidr:1.1.1.11/32
+           reserved:world-ipv4
+
+Exclusion:
+
+root@kind-worker4:/home/cilium# cilium-dbg map get cilium_policy_v2_02003
+Key                     Value     State   Error
+Ingress: 1 ANY          0 0 0 0           
+Ingress: 16777220 ANY   0 0 0 0           
+Egress: 16777220 ANY    0 0 0 0           
+Ingress: 16777221 ANY   0 0 0 0           
+Ingress: 16777222 ANY   0 0 0 0           
+Ingress: 16777223 ANY   0 0 0 0           
+Ingress: 16777224 ANY   0 0 0 0           
+Ingress: 16777225 ANY   0 0 0 0           
+Ingress: 16777226 ANY   0 0 0 0           
+Ingress: 6701 ANY       0 0 0 0           
+Egress: 6701 ANY        0 0 0 0           
+
+
+
+root@kind-worker4:/home/cilium# cilium-dbg map get cilium_policy_v2_02003
+Key                     Value     State   Error
+Ingress: 1 ANY          0 0 0 0           
+Ingress: 16777220 ANY   0 0 0 0   (1.1.1.2 /32)        
+Ingress: 16777221 ANY   0 0 0 0   (1.1.1.3 /32)  
+Ingress: 16777222 ANY   0 0 0 0   (1.1.1.1 /32)  
+Ingress: 16777223 ANY   0 0 0 0   (1.1.0.0 /16) 
+Ingress: 16777224 ANY   0 0 0 0   (1.1.1.10/32)
+Ingress: 16777227 ANY   0 0 0 0   (1.1.1.0 /24)
+
+===
+
+16777220   cidr:1.1.1.2/32            reserved:world-ipv4
+16777223   cidr:1.1.0.0/16           reserved:world-ipv4
+16777224   cidr:1.1.1.10/32           reserved:world-ipv4
+16777226   cidr:1.1.1.11/32           reserved:world-ipv4
+
+root@kind-worker4:/home/cilium# cilium-dbg policy selectors
+SELECTOR                                                                                                                                                                                                                                                                                                                                  LABELS                   USERS   IDENTITIES
+&LabelSelector{MatchLabels:map[string]string{k8s.app: pod1,k8s.io.kubernetes.pod.namespace: default,},MatchExpressions:[]LabelSelectorRequirement{},}                                                                                                                                                                                     default/network-policy   2       6701       
+&LabelSelector{MatchLabels:map[string]string{k8s.app: pod2,k8s.io.kubernetes.pod.namespace: default,},MatchExpressions:[]LabelSelectorRequirement{},}                                                                                                                                                                                     default/network-policy   1       50779      
+&LabelSelector{MatchLabels:map[string]string{},MatchExpressions:[]LabelSelectorRequirement{LabelSelectorRequirement{Key:cidr.1.1.0.0/16,Operator:Exists,Values:[],},LabelSelectorRequirement{Key:cidr.1.1.1.10/32,Operator:DoesNotExist,Values:[],},LabelSelectorRequirement{Key:cidr.1.1.1.11/32,Operator:DoesNotExist,Values:[],},},}   default/network-policy   1       16777220   
+                                                                                                                                                                                                                                                                                                                                                                           16777223   
+&LabelSelector{MatchLabels:map[string]string{},MatchExpressions:[]LabelSelectorRequirement{LabelSelectorRequirement{Key:cidr.1.1.1.2/32,Operator:Exists,Values:[],},},}                                                                                                                                                                   default/network-policy   1       16777220   

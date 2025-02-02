@@ -118,6 +118,8 @@ func concat(buf []*policytypes.PolicyUpdate, in *policytypes.PolicyUpdate) []*po
 //
 // It returns the set of stale prefixes that should be deallocated after policy updates are complete.
 func (i *policyImporter) updatePrefixes(ctx context.Context, updates []*policytypes.PolicyUpdate) (toPrune map[ipcachetypes.ResourceID][]netip.Prefix) {
+	i.log.Info("XXX/bowei: updatePrefixes()")
+
 	if i.ipc == nil {
 		return
 	}
@@ -261,6 +263,8 @@ func (i *policyImporter) prunePrefixes(prunePrefixes map[ipcachetypes.ResourceID
 // CIDR identities.
 // (Does not actually return error, just to satisfy the Job signature)
 func (i *policyImporter) processUpdates(ctx context.Context, updates []*policytypes.PolicyUpdate) error {
+	i.log.Info("XXX/bowei: processUpdates()")
+
 	if len(updates) == 0 {
 		return nil
 	}

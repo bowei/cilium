@@ -1,0 +1,3 @@
+make
+make kind-image
+make kind-install-cilium

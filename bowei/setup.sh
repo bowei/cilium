@@ -1,12 +1,6 @@
 #!/bin/bash
 
-set -euxo pipefile
-
-case "$1" in
-  "setup") run_setup ;;
-  "cleanup") run_cleanup ;;
-  *) run_query ;;
-esac
+set -ex
 
 run_setup() {
   kubectl run pod1 --image nginx:latest -l app=pod1
@@ -15,9 +9,17 @@ run_setup() {
 }
 
 run_cleanup() {
+  echo
 }
 
 run_query() {
-  kubectl get pod1
-  kubectl get pod2
+  kubectl get pod pod1 || true
+  kubectl get pod pod2 || true
 }
+
+case "$1" in
+  "setup") run_setup ;;
+  "cleanup") run_cleanup ;;
+  *) run_query ;;
+esac
+

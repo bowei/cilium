@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: network-policy-3
+  namespace: default
+spec:
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 1.1.1.10/32
+    - ipBlock:
+        cidr: 1.1.1.11/32
+    - ipBlock:
+        cidr: 1.1.1.12/32
+    - podSelector:
+        matchLabels:
+          app: pod1
+  podSelector:
+    matchLabels:
+      app: pod2
+  policyTypes:
+  - Ingress
+  - Egress
