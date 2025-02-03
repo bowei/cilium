@@ -313,6 +313,7 @@ require (
 	sigs.k8s.io/kustomize/api v0.18.0 // indirect
 	sigs.k8s.io/kustomize/kyaml v0.18.1 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.4.2 // indirect
+	sigs.k8s.io/network-policy-api v0.1.5
 )
 
 // Using private fork of controller-tools. See commit msg for more context
