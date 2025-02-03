@@ -528,6 +528,9 @@ const (
 	// EnableK8sNetworkPolicy enables support for K8s NetworkPolicy.
 	EnableK8sNetworkPolicy = true
 
+	// EnableK8sAdminNetworkPolicy enables support for K8s AdminNetworkPolicy.
+	EnableK8sAdminNetworkPolicy = true // XXX/bowei
+
 	// EnableCiliumNetworkPolicy enables support for Cilium Network Policy.
 	EnableCiliumNetworkPolicy = true
 

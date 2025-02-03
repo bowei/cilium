@@ -140,6 +140,16 @@ func startK8sPolicyWatcher(params PolicyWatcherParams) {
 			return p.knpSyncPending.Load() == 0
 		})
 	}
+
+	// XXX
+	if params.Config.EnableK8sAdminNetworkPolicy {
+		p.kanpSyncPending.Store(1)
+		// XXX/bowei -- this needs to be fixed up.
+		p.registerResourceWithSyncFn(ctx, k8sAPIGroupNetworkingV1Core, func() bool {
+			return p.kanpSyncPending.Load() == 0
+		})
+	}
+
 	if params.Config.EnableCiliumNetworkPolicy {
 		p.cnpSyncPending.Store(1)
 		p.registerResourceWithSyncFn(ctx, k8sAPIGroupCiliumNetworkPolicyV2, func() bool {

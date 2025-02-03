@@ -88,8 +88,9 @@ func TestNetworkPolicyEnabled(t *testing.T) {
 
 	for _, tc := range tcs {
 		cfg := &DaemonConfig{
-			EnablePolicy:                         tc.enablePolicy,
-			EnableK8sNetworkPolicy:               tc.enableK8sPolicy,
+			EnablePolicy:           tc.enablePolicy,
+			EnableK8sNetworkPolicy: tc.enableK8sPolicy,
+			// XXX/bowei -- fixme
 			EnableCiliumNetworkPolicy:            tc.enableCNP,
 			EnableCiliumClusterwideNetworkPolicy: tc.enableCCNP,
 			DisableCiliumEndpointCRD:             tc.disableCEP,

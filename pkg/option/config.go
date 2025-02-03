@@ -1107,6 +1107,9 @@ const (
 	// EnableK8sNetworkPolicy enables support for K8s NetworkPolicy.
 	EnableK8sNetworkPolicy = "enable-k8s-networkpolicy"
 
+	// EnableK8sAdminNetworkPolicy enables support for K8s AdminNetworkPolicy.
+	EnableK8sAdminNetworkPolicy = "enable-k8s-adminnetworkpolicy"
+
 	// EnableCiliumNetworkPolicy enables support for Cilium Network Policy.
 	EnableCiliumNetworkPolicy = "enable-cilium-network-policy"
 
@@ -2205,6 +2208,9 @@ type DaemonConfig struct {
 	// EnableK8sNetworkPolicy enables support for K8s NetworkPolicy.
 	EnableK8sNetworkPolicy bool
 
+	// EnableK8sAdminNetworkPolicy enables support for K8s AdminNetworkPolicy
+	EnableK8sAdminNetworkPolicy bool
+
 	// EnableCiliumNetworkPolicy enables support for Cilium Network Policy.
 	EnableCiliumNetworkPolicy bool
 
@@ -2302,6 +2308,7 @@ var (
 		EnableVTEP:                           defaults.EnableVTEP,
 		EnableBGPControlPlane:                defaults.EnableBGPControlPlane,
 		EnableK8sNetworkPolicy:               defaults.EnableK8sNetworkPolicy,
+		EnableK8sAdminNetworkPolicy:          defaults.EnableK8sAdminNetworkPolicy,
 		EnableCiliumNetworkPolicy:            defaults.EnableCiliumNetworkPolicy,
 		EnableCiliumClusterwideNetworkPolicy: defaults.EnableCiliumClusterwideNetworkPolicy,
 		PolicyCIDRMatchMode:                  defaults.PolicyCIDRMatchMode,
@@ -3235,6 +3242,7 @@ func (c *DaemonConfig) Populate(vp *viper.Viper) {
 	c.EnableNodeSelectorLabels = vp.GetBool(EnableNodeSelectorLabels)
 	c.NodeLabels = vp.GetStringSlice(NodeLabels)
 
+	c.EnableK8sAdminNetworkPolicy = vp.GetBool(EnableK8sAdminNetworkPolicy)
 	c.EnableCiliumNetworkPolicy = vp.GetBool(EnableCiliumNetworkPolicy)
 	c.EnableCiliumClusterwideNetworkPolicy = vp.GetBool(EnableCiliumClusterwideNetworkPolicy)
 
